@@ -1,26 +1,607 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   Wonderland Inflatables — design system
+
+   Register: industrial equipment catalog with summer warmth. The product
+   photography is loud (bright vinyl, saturated colour), so the chrome stays
+   quiet: warm ink and bone neutrals, one vermilion accent used sparingly,
+   sun yellow for punctuation only.
+
+   The stock Tailwind slate / orange / amber / emerald ramps are deliberately
+   REMAPPED below. ~740 utility usages across the app inherit the brand from
+   here rather than being rewritten file by file.
+   ========================================================================== */
+
+@theme {
+  /* ---- Typography ------------------------------------------------------ */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-archivo), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- Neutrals: warm ink → bone (replaces cold default slate) ---------- */
+  --color-slate-50: #faf8f4;
+  --color-slate-100: #f2eee7;
+  --color-slate-200: #e4ded3;
+  --color-slate-300: #cec5b6;
+  --color-slate-400: #a49886;
+  --color-slate-500: #7a6e5d;
+  --color-slate-600: #5b5145;
+  --color-slate-700: #443c33;
+  --color-slate-800: #2b2620;
+  --color-slate-900: #1b1712;
+  --color-slate-950: #110e0a;
+
+  /* Mirror onto stone/gray/neutral/zinc so stray ramps stay in family */
+  --color-stone-50: #faf8f4;
+  --color-stone-100: #f2eee7;
+  --color-stone-200: #e4ded3;
+  --color-stone-300: #cec5b6;
+  --color-stone-400: #a49886;
+  --color-stone-500: #7a6e5d;
+  --color-stone-600: #5b5145;
+  --color-stone-700: #443c33;
+  --color-stone-800: #2b2620;
+  --color-stone-900: #1b1712;
+  --color-stone-950: #110e0a;
+
+  --color-gray-50: #faf8f4;
+  --color-gray-100: #f2eee7;
+  --color-gray-200: #e4ded3;
+  --color-gray-300: #cec5b6;
+  --color-gray-400: #a49886;
+  --color-gray-500: #7a6e5d;
+  --color-gray-600: #5b5145;
+  --color-gray-700: #443c33;
+  --color-gray-800: #2b2620;
+  --color-gray-900: #1b1712;
+  --color-gray-950: #110e0a;
+
+  --color-neutral-50: #faf8f4;
+  --color-neutral-100: #f2eee7;
+  --color-neutral-200: #e4ded3;
+  --color-neutral-300: #cec5b6;
+  --color-neutral-400: #a49886;
+  --color-neutral-500: #7a6e5d;
+  --color-neutral-600: #5b5145;
+  --color-neutral-700: #443c33;
+  --color-neutral-800: #2b2620;
+  --color-neutral-900: #1b1712;
+  --color-neutral-950: #110e0a;
+
+  /* ---- Accent: vermilion (replaces default orange) --------------------- */
+  --color-orange-50: #fff4ef;
+  --color-orange-100: #ffe4d9;
+  --color-orange-200: #ffc5ae;
+  --color-orange-300: #ff9d79;
+  --color-orange-400: #fb7145;
+  --color-orange-500: #ef4d1e;
+  --color-orange-600: #e23d11;
+  --color-orange-700: #b92e0a;
+  --color-orange-800: #94270d;
+  --color-orange-900: #78230f;
+  --color-orange-950: #410e04;
+
+  /* ---- Sun: warm highlight (replaces default amber) -------------------- */
+  --color-amber-50: #fdf8ec;
+  --color-amber-100: #f9edcc;
+  --color-amber-200: #f4dc9c;
+  --color-amber-300: #eec462;
+  --color-amber-400: #e9ae3a;
+  --color-amber-500: #d99320;
+  --color-amber-600: #bb7218;
+  --color-amber-700: #955317;
+  --color-amber-800: #7b431a;
+  --color-amber-900: #683818;
+
+  /* ---- Moss: muted success (replaces neon emerald) --------------------- */
+  --color-emerald-50: #eef5ee;
+  --color-emerald-100: #d8e8d8;
+  --color-emerald-200: #b4d1b5;
+  --color-emerald-300: #86b189;
+  --color-emerald-400: #5b9060;
+  --color-emerald-500: #3d7444;
+  --color-emerald-600: #2d5c35;
+  --color-emerald-700: #26492c;
+  --color-emerald-800: #203b26;
+  --color-emerald-900: #1b3121;
+
+  /* ---- Clay: muted danger (replaces default red) ----------------------- */
+  --color-red-50: #fdf2f0;
+  --color-red-100: #fbe0dc;
+  --color-red-200: #f6c3bc;
+  --color-red-300: #ee9c91;
+  --color-red-400: #e17061;
+  --color-red-500: #cf4a3a;
+  --color-red-600: #b3372a;
+  --color-red-700: #932c22;
+  --color-red-800: #7a2820;
+  --color-red-900: #67251f;
+
+  /* ---- Semantic aliases (for new code) --------------------------------- */
+  --color-ink: #1b1712;
+  --color-ink-soft: #2b2620;
+  --color-paper: #ffffff;
+  --color-bone: #faf8f4;
+  --color-line: #e4ded3;
+  --color-line-strong: #cec5b6;
+  --color-accent: #e23d11;
+  --color-accent-deep: #b92e0a;
+  --color-sun: #e9ae3a;
+
+  /* ---- Radii: tightened. Uniform 16px everywhere is a giveaway. -------- */
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 7px;
+  --radius-xl: 10px;
+  --radius-2xl: 14px;
+  --radius-3xl: 18px;
+
+  /* ---- Shadows: warm-tinted, never cold blue-grey ---------------------- */
+  --shadow-2xs: 0 1px 2px rgba(27, 23, 18, 0.05);
+  --shadow-xs: 0 1px 3px rgba(27, 23, 18, 0.07);
+  --shadow-sm: 0 2px 6px rgba(27, 23, 18, 0.07);
+  --shadow-md: 0 6px 18px rgba(27, 23, 18, 0.08);
+  --shadow-lg: 0 14px 38px rgba(27, 23, 18, 0.10);
+  --shadow-xl: 0 26px 64px rgba(27, 23, 18, 0.13);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #1b1712;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  /* Prices, specs and counts must never jitter as they change */
+  th, td, time { font-variant-numeric: tabular-nums; }
+
+  ::selection {
+    background-color: #ffd9c9;
+    color: #78230f;
+  }
+
+  :focus-visible {
+    outline: 2px solid #e23d11;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Keep the accent ring off mouse clicks, on for keyboards */
+  :focus:not(:focus-visible) { outline: none; }
+
+  img, svg, video { display: block; max-width: 100%; }
+
+  hr { border: 0; border-top: 1px solid var(--color-line); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+@layer components {
+
+  /* ---- Layout ---------------------------------------------------------- */
+
+  .container-wide {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 82.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-wide { padding-left: 2rem; padding-right: 2rem; }
+  }
+  @media (min-width: 1280px) {
+    .container-wide { padding-left: 2.5rem; padding-right: 2.5rem; }
+  }
+
+  /* Hairline that reads as a drawn rule, not a border */
+  .rule {
+    height: 1px;
+    background-color: var(--color-line);
+    border: 0;
+  }
+
+  /* ---- Type ------------------------------------------------------------ */
+
+  /* Wide, heavy display type. Archivo carries a `wdth` axis; where it loads
+     the extra width is what makes headlines feel set rather than defaulted. */
+  .display-xl,
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 112%;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+  .display-xl { font-size: clamp(2.75rem, 6.2vw, 5rem); }
+  .display-lg { font-size: clamp(2.25rem, 4.6vw, 3.5rem); }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    font-stretch: 108%;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #1b1712;
+    text-wrap: balance;
+  }
+
+  .section-subheading {
+    margin-top: 0.625rem;
+    font-size: 1rem;
+    color: #5b5145;
+    max-width: 44ch;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* Shared homepage section rhythm — tighter than the default marketing stack. */
+  .section-block {
+    padding-block: 3rem;
+  }
+  @media (min-width: 1024px) {
+    .section-block {
+      padding-block: 4rem;
+    }
+  }
+
+  .section-intro {
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 1024px) {
+    .section-intro {
+      margin-bottom: 2.25rem;
+    }
+  }
+
+  /* Mono eyebrow. The sans-semibold-uppercase-orange eyebrow is the single
+     most over-used section label on the web; this reads as spec sheet. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: #b92e0a;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.875rem;
+  }
+  .eyebrow-plain::before { display: none; }
+
+  /* Spec / data lockup */
+  .spec {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  .tabular { font-variant-numeric: tabular-nums; }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1b1712;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--color-line-strong);
+    transition: color 0.18s ease, border-color 0.18s ease, gap 0.18s ease;
+  }
+  .link-arrow:hover {
+    color: #b92e0a;
+    border-color: #e23d11;
+    gap: 0.75rem;
+  }
+
+  /* ---- Buttons --------------------------------------------------------- */
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .btn-primary {
+    background-color: #e23d11;
+    padding: 0.8125rem 1.375rem;
+    color: #ffffff;
+    border: 1px solid #e23d11;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+  .btn-primary:hover { background-color: #b92e0a; border-color: #b92e0a; }
+  .btn-primary:active { background-color: #94270d; border-color: #94270d; }
+  .btn-primary:disabled { opacity: 0.45; pointer-events: none; }
+
+  .btn-secondary {
+    border: 1px solid var(--color-line-strong);
+    background-color: #ffffff;
+    padding: 0.8125rem 1.375rem;
+    color: #1b1712;
+  }
+  .btn-secondary:hover { background-color: #faf8f4; border-color: #a4988e; }
+  .btn-secondary:active { background-color: #f2eee7; }
+  .btn-secondary:disabled { opacity: 0.45; pointer-events: none; }
+
+  .btn-ghost {
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    color: #443c33;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+  .btn-ghost:hover { background-color: #f2eee7; color: #1b1712; }
+  .btn-ghost:active { background-color: #e4ded3; }
+
+  /* ---- Surfaces -------------------------------------------------------- */
+
+  /* Lift-on-hover with a big soft shadow is the house style of generated
+     UI. These settle instead: the border tightens and the shadow deepens. */
+  .card-hover {
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
+  }
+  .card-hover:hover {
+    border-color: var(--color-line-strong);
+    box-shadow: 0 8px 24px rgba(27, 23, 18, 0.07);
+  }
+
+  .card-product {
+    position: relative;
+    background: #ffffff;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    isolation: isolate;
+  }
+  .card-product:hover {
+    border-color: #a4988e;
+    box-shadow: 0 10px 30px rgba(27, 23, 18, 0.09);
+  }
+
+  /* ---- Badges ---------------------------------------------------------- */
+
+  .badge,
+  .badge-orange,
+  .badge-green,
+  .badge-slate,
+  .badge-red {
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--radius-sm);
+    padding: 0.1875rem 0.4375rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .badge { background-color: #f2eee7; color: #443c33; }
+  .badge-orange { background-color: #e23d11; color: #ffffff; }
+  .badge-green { background-color: #d8e8d8; color: #26492c; }
+  .badge-slate { background-color: #2b2620; color: #f2eee7; }
+  .badge-red { background-color: #b3372a; color: #ffffff; }
+
+  /* ---- Forms ----------------------------------------------------------- */
+
+  .input,
+  select.input,
+  textarea.input {
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-line-strong);
+    background-color: #ffffff;
+    padding: 0.6875rem 0.875rem;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: #1b1712;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    outline: none;
+  }
+  .input::placeholder { color: #a4988e; }
+  .input:hover:not(:focus) { border-color: #a4988e; }
+  .input:focus {
+    border-color: #e23d11;
+    box-shadow: 0 0 0 3px rgba(226, 61, 17, 0.14);
+  }
+  .input:disabled { background-color: #faf8f4; color: #7a6e5d; cursor: not-allowed; }
+  .input[aria-invalid="true"] {
+    border-color: #b3372a;
+    box-shadow: 0 0 0 3px rgba(179, 55, 42, 0.12);
+  }
+
+  /* ---- Long-form copy (legal, guides, policy pages) -------------------- */
+
+  .prose-info h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: #1b1712;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-info p + p { margin-top: 0.875rem; }
+
+  .prose-info ul,
+  .prose-info ol {
+    margin: 0.25rem 0 0.25rem 0;
+    padding-left: 1.125rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .prose-info ul { list-style: none; padding-left: 0; }
+  .prose-info ul > li {
+    position: relative;
+    padding-left: 1.375rem;
+  }
+  .prose-info ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0.1875rem;
+    top: 0.6875rem;
+    width: 0.375rem;
+    height: 1px;
+    background-color: #e23d11;
+  }
+  .prose-info ol { list-style: decimal; }
+  .prose-info ol > li { padding-left: 0.25rem; }
+  .prose-info ol > li::marker {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: #7a6e5d;
+  }
+
+  .prose-info a:not(.btn-primary):not(.btn-secondary) {
+    color: #1b1712;
+    text-decoration: underline;
+    text-decoration-color: #cec5b6;
+    text-underline-offset: 3px;
+    transition: color 0.18s ease, text-decoration-color 0.18s ease;
+  }
+  .prose-info a:not(.btn-primary):not(.btn-secondary):hover {
+    color: #b92e0a;
+    text-decoration-color: #e23d11;
+  }
+
+  .prose-info strong { font-weight: 600; color: #1b1712; }
+
+  .prose-info table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin: 0.5rem 0;
+  }
+  .prose-info th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #7a6e5d;
+    padding: 0.625rem 1rem 0.625rem 0;
+    border-bottom: 1px solid #1b1712;
+  }
+  .prose-info td {
+    padding: 0.75rem 1rem 0.75rem 0;
+    border-bottom: 1px solid var(--color-line);
+    color: #443c33;
+  }
+
+  .label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #443c33;
+    letter-spacing: -0.005em;
+    margin-bottom: 0.4375rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+
+  .display-wide { font-stretch: 112%; }
+
+  /* Hides scrollbar on horizontal rails while keeping them scrollable */
+  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  .animate-fade-up { animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-fade-in { animation: fadeIn 0.4s ease-out both; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes heroRing {
+    0% { transform: scale(0.85); opacity: 0.85; }
+    100% { transform: scale(1.35); opacity: 0; }
+  }
+
+  .animate-hero-ring {
+    animation: heroRing 5.5s ease-out infinite;
+  }
 }

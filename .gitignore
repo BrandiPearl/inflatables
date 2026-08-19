@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# scraper cache (resume file; can contain full catalog dumps)
+scripts/.scrape-cache.json
+
 # vercel
 .vercel
 
