@@ -19,7 +19,8 @@ export default function PrivacyPage() {
           When you request a quote, send a contact message, or place an order, we
           collect your name, email, phone number, address, and the details of your
           event or order. We also collect basic analytics such as pages visited,
-          device type, and referring site.
+          device type, and referring site. If you use live chat, Tawk.to processes
+          those messages on our behalf so we can answer you.
         </p>
       </InfoSection>
 

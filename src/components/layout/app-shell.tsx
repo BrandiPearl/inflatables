@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { TawkChat } from "@/components/layout/tawk-chat";
 import { CartProvider } from "@/components/cart/cart-provider";
 import { SettingsProvider } from "@/components/layout/settings-provider";
 import { CurrencyProvider } from "@/components/currency/currency-provider";
@@ -33,6 +34,7 @@ export function AppShell({
           <main>{children}</main>
           <Footer />
           <ScrollToTop />
+          <TawkChat />
         </CartProvider>
       </CurrencyProvider>
     </SettingsProvider>
