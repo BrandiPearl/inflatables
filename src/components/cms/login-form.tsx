@@ -13,11 +13,11 @@ export function LoginForm() {
   const [state, action, pending] = useActionState<ActionState, FormData>(login, null);
 
   return (
-    <form action={action} className="bg-white rounded-2xl border border-slate-100 p-8 space-y-4 shadow-sm">
+    <form action={action} className="space-y-4">
       <input type="hidden" name="next" value={next.startsWith("/admin") ? next : "/admin"} />
       <FormAlert state={state} />
       <div>
-        <label className="label" htmlFor="password">
+        <label className="label text-slate-300" htmlFor="password">
           Password
         </label>
         <input
@@ -25,7 +25,7 @@ export function LoginForm() {
           name="password"
           type="password"
           autoComplete="current-password"
-          className="input"
+          className="input bg-slate-800 border-slate-700 text-white placeholder:text-slate-500"
           required
         />
       </div>
@@ -38,16 +38,20 @@ export function LoginForm() {
 
 export function LoginPageClient() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
-        <div className="text-center mb-6">
-          <div className="flex justify-center mb-4">
-            <Logo size="sm" href="/" />
+        <div className="rounded-2xl border border-white/10 bg-slate-900 p-8 shadow-2xl">
+          <div className="mb-8 text-center">
+            <div className="mb-5 flex justify-center">
+              <Logo variant="light" size="sm" href="/" />
+            </div>
+            <h1 className="font-display text-xl font-bold text-white">Wonderland CMS</h1>
+            <p className="mt-2 text-sm text-slate-400">
+              Sign in to manage products, blog posts, and customer inquiries.
+            </p>
           </div>
-          <h1 className="text-xl font-bold text-slate-900">Wonderland CMS</h1>
-          <p className="text-sm text-slate-500 mt-1">Sign in to manage the catalog, blog, and quotes.</p>
+          <LoginForm />
         </div>
-        <LoginForm />
       </div>
     </div>
   );

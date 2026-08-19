@@ -30,7 +30,7 @@ function formatDate(dateStr: string) {
 
 export function QuoteCard({ quote }: { quote: QuoteListItem }) {
   return (
-    <div className="bg-white rounded-xl border border-slate-100 p-5">
+    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4 mb-3">
         <div>
           <div className="font-semibold text-slate-900">
@@ -92,7 +92,7 @@ export function QuoteCard({ quote }: { quote: QuoteListItem }) {
 
 export function ContactCard({ message }: { message: ContactListItem }) {
   return (
-    <div className="bg-white rounded-xl border border-slate-100 p-5">
+    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4 mb-3">
         <div>
           <div className="font-semibold text-slate-900">{message.name}</div>

@@ -21,7 +21,7 @@ export function ProductForm({ product }: { product?: AdminProduct }) {
       {product ? <input type="hidden" name="id" value={product.id} /> : null}
       <FormAlert state={state} />
 
-      <section className="bg-white rounded-xl border border-slate-100 p-6 space-y-4">
+      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
         <h2 className="text-sm font-bold text-slate-900">Basics</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="Name">
@@ -69,7 +69,7 @@ export function ProductForm({ product }: { product?: AdminProduct }) {
         </Field>
       </section>
 
-      <section className="bg-white rounded-xl border border-slate-100 p-6 space-y-4">
+      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
         <h2 className="text-sm font-bold text-slate-900">Images and features</h2>
         <Field label="Image URLs (one per line)">
           <textarea
@@ -87,7 +87,7 @@ export function ProductForm({ product }: { product?: AdminProduct }) {
         </Field>
       </section>
 
-      <section className="bg-white rounded-xl border border-slate-100 p-6 space-y-4">
+      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
         <h2 className="text-sm font-bold text-slate-900">Specs</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <Field label="Length"><input name="spec_length" className="input" defaultValue={product?.spec_length} /></Field>
@@ -103,7 +103,7 @@ export function ProductForm({ product }: { product?: AdminProduct }) {
         </div>
       </section>
 
-      <section className="bg-white rounded-xl border border-slate-100 p-6 space-y-4">
+      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
         <h2 className="text-sm font-bold text-slate-900">Flags and SEO</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <Check name="is_active" label="Active on site" defaultChecked={product?.is_active ?? true} />

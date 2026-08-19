@@ -14,7 +14,7 @@ export function TestimonialForm({ testimonial }: { testimonial?: AdminTestimonia
       {testimonial ? <input type="hidden" name="id" value={testimonial.id} /> : null}
       <FormAlert state={state} />
 
-      <section className="bg-white rounded-xl border border-slate-100 p-6 space-y-4">
+      <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
         <div className="grid sm:grid-cols-2 gap-4">
           <Field label="Name">
             <input name="name" className="input" required defaultValue={testimonial?.name} />

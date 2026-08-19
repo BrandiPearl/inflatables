@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdminPageHeader } from "@/components/cms/admin-page-header";
 import { BlogForm } from "@/components/cms/blog-form";
 import { getAdminBlogPost } from "@/lib/queries/blog";
 import { getAuthors } from "@/lib/queries/cms";
@@ -18,13 +18,12 @@ export default async function EditBlogPage({
 
   return (
     <div>
-      <div className="mb-6">
-        <Link href="/admin/blog" className="text-xs text-orange-600 font-semibold hover:underline">
-          Back to blog
-        </Link>
-        <h1 className="text-xl font-bold text-slate-900 mt-2">Edit post</h1>
-        <p className="text-slate-500 text-sm mt-0.5">{post.title}</p>
-      </div>
+      <AdminPageHeader
+        backHref="/admin/blog"
+        backLabel="Back to blog"
+        title="Edit post"
+        description={post.title}
+      />
       <BlogForm post={post} authors={authors} />
     </div>
   );

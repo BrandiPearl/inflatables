@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Plus, Pencil, Eye } from "lucide-react";
+import { AdminPageHeader } from "@/components/cms/admin-page-header";
 import { getAdminBlogPosts } from "@/lib/queries/blog";
 
 export const metadata: Metadata = { title: "Blog" };
@@ -24,18 +25,18 @@ export default async function AdminBlogPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-xl font-bold text-slate-900">Blog Posts</h1>
-          <p className="text-slate-500 text-sm mt-0.5">{posts.length} posts</p>
-        </div>
-        <Link href="/admin/blog/new" className="btn-primary text-sm py-2 px-4">
-          <Plus className="w-4 h-4" />
-          New Post
-        </Link>
-      </div>
+      <AdminPageHeader
+        title="Blog"
+        description={`${posts.length} posts`}
+        actions={
+          <Link href="/admin/blog/new" className="btn-primary text-sm py-2 px-4">
+            <Plus className="w-4 h-4" />
+            New post
+          </Link>
+        }
+      />
 
-      <div className="bg-white rounded-xl border border-slate-100 overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         {posts.length === 0 ? (
           <p className="p-8 text-sm text-slate-500">No blog posts yet. Seed content with npm run seed:content.</p>
         ) : (

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { AdminPageHeader } from "@/components/cms/admin-page-header";
 import { BlogForm } from "@/components/cms/blog-form";
 import { getAuthors } from "@/lib/queries/cms";
 
@@ -10,13 +10,12 @@ export default async function NewBlogPage() {
 
   return (
     <div>
-      <div className="mb-6">
-        <Link href="/admin/blog" className="text-xs text-orange-600 font-semibold hover:underline">
-          Back to blog
-        </Link>
-        <h1 className="text-xl font-bold text-slate-900 mt-2">New Post</h1>
-        <p className="text-slate-500 text-sm mt-0.5">Write a draft or publish it to the blog.</p>
-      </div>
+      <AdminPageHeader
+        backHref="/admin/blog"
+        backLabel="Back to blog"
+        title="New post"
+        description="Write a draft or publish it to the blog."
+      />
       <BlogForm authors={authors} />
     </div>
   );

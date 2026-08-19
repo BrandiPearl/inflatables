@@ -28,8 +28,8 @@ export function ProductsTable({ products }: { products: AdminProductListItem[] }
   }, [products, query, category, status]);
 
   return (
-    <div className="bg-white rounded-xl border border-slate-100 overflow-hidden">
-      <div className="flex flex-wrap items-center gap-3 p-4 border-b border-slate-100">
+    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+      <div className="flex flex-wrap items-center gap-3 border-b border-slate-100 p-4">
         <input
           type="search"
           value={query}

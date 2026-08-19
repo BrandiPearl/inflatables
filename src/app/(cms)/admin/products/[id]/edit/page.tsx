@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AdminPageHeader } from "@/components/cms/admin-page-header";
 import { ProductForm } from "@/components/cms/product-form";
 import { getAdminProduct } from "@/lib/queries/cms";
 
@@ -17,13 +17,12 @@ export default async function EditProductPage({
 
   return (
     <div>
-      <div className="mb-6">
-        <Link href="/admin/products" className="text-xs text-orange-600 font-semibold hover:underline">
-          Back to products
-        </Link>
-        <h1 className="text-xl font-bold text-slate-900 mt-2">Edit product</h1>
-        <p className="text-slate-500 text-sm mt-0.5">{product.name}</p>
-      </div>
+      <AdminPageHeader
+        backHref="/admin/products"
+        backLabel="Back to products"
+        title="Edit product"
+        description={product.name}
+      />
       <ProductForm product={product} />
     </div>
   );

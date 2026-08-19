@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AdminNav } from "@/components/cms/admin-nav";
+import { AdminShell } from "@/components/cms/admin-shell";
 
 export const metadata: Metadata = {
   title: {
@@ -10,10 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function CmsLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
-      <AdminNav />
-      <main className="flex-1 container-wide py-8">{children}</main>
-    </div>
-  );
+  return <AdminShell>{children}</AdminShell>;
 }

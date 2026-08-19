@@ -13,7 +13,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
     <form action={action} className="space-y-6 max-w-2xl">
       <FormAlert state={state} />
 
-      <div className="bg-white rounded-xl border border-slate-100 p-6">
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="text-sm font-bold text-slate-900 mb-5">Business Information</h2>
         <div className="space-y-4">
           <Field name="business_name" label="Business Name" defaultValue={settings.business_name} />
@@ -23,7 +23,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-100 p-6">
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="text-sm font-bold text-slate-900 mb-5">SEO Defaults</h2>
         <div className="space-y-4">
           <Field name="seo_title" label="Default Meta Title" defaultValue={settings.seo_title} />
@@ -34,7 +34,7 @@ export function SettingsForm({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-100 p-6">
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="text-sm font-bold text-slate-900 mb-5">Announcement Bar</h2>
         <div className="space-y-4">
           <Field name="announcement" label="Announcement Text" defaultValue={settings.announcement} />

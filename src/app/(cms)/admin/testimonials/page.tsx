@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Plus, Pencil } from "lucide-react";
+import { AdminPageHeader } from "@/components/cms/admin-page-header";
 import { getAdminTestimonials } from "@/lib/queries/cms";
 
 export const metadata: Metadata = { title: "Reviews" };
@@ -10,25 +11,25 @@ export default async function AdminTestimonialsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-xl font-bold text-slate-900">Reviews</h1>
-          <p className="text-slate-500 text-sm mt-0.5">{testimonials.length} testimonials</p>
-        </div>
-        <Link href="/admin/testimonials/new" className="btn-primary text-sm py-2 px-4">
-          <Plus className="w-4 h-4" />
-          Add review
-        </Link>
-      </div>
+      <AdminPageHeader
+        title="Reviews"
+        description={`${testimonials.length} testimonials on the homepage`}
+        actions={
+          <Link href="/admin/testimonials/new" className="btn-primary text-sm py-2 px-4">
+            <Plus className="w-4 h-4" />
+            Add review
+          </Link>
+        }
+      />
 
       <div className="space-y-3">
         {testimonials.length === 0 ? (
-          <div className="bg-white rounded-xl border border-slate-100 p-8 text-sm text-slate-500">
+          <div className="rounded-xl border border-slate-200 bg-white p-8 text-sm text-slate-500 shadow-sm">
             No testimonials yet.
           </div>
         ) : (
           testimonials.map((item) => (
-            <div key={item.id} className="bg-white rounded-xl border border-slate-100 p-5 flex gap-4">
+            <div key={item.id} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <div className="font-semibold text-slate-900">{item.name}</div>
