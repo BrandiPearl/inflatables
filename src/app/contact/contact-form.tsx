@@ -64,7 +64,7 @@ export function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="label" htmlFor="phone">Phone</label>
-          <input id="phone" name="phone" type="tel" className="input" placeholder="(555) 000-0000" value={form.phone} onChange={handleChange} />
+          <input id="phone" name="phone" type="tel" className="input" value={form.phone} onChange={handleChange} />
         </div>
         <div>
           <label className="label" htmlFor="subject">Subject *</label>

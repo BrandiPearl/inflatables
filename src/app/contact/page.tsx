@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "./contact-form";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Mail, Clock } from "lucide-react";
 import { getSiteSettings } from "@/lib/queries/settings";
-import { telHref } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -35,9 +34,7 @@ export default async function ContactPage() {
               <div className="space-y-4">
                 {[
                   { icon: Mail, label: settings.email, sub: "Best way to reach us", href: `mailto:${settings.email}` },
-                  { icon: Phone, label: settings.phone, sub: "If email is not an option", href: telHref(settings.phone) },
                   { icon: Clock, label: "Mon-Fri, 8am-6pm PST", sub: "Business hours", href: null },
-                  { icon: MapPin, label: settings.address, sub: "Warehouse & showroom", href: null },
                 ].map(({ icon: Icon, label, sub, href }) => (
                   <div key={label} className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0 mt-0.5">

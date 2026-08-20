@@ -7,7 +7,6 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { CtaStrip } from "@/components/sections/cta-strip";
 import { BlogPreview } from "@/components/sections/blog-preview";
 import { getSiteSettings } from "@/lib/queries/settings";
-import { telHref } from "@/lib/contact-info";
 
 export const metadata: Metadata = {
   title: "Wonderland Inflatables | Commercial Bounce Houses & Water Slides for Sale",
@@ -42,16 +41,7 @@ export default async function HomePage() {
             description:
               "Commercial grade inflatable bounce houses, water slides, and obstacle courses for rental businesses and large events.",
             url: "https://wonderlandinflatables.com",
-            telephone: telHref(settings.phone).replace(/^tel:/, ""),
             email: settings.email,
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "3200 Commerce Blvd",
-              addressLocality: "Ontario",
-              addressRegion: "CA",
-              postalCode: "91761",
-              addressCountry: "US",
-            },
             openingHoursSpecification: [
               {
                 "@type": "OpeningHoursSpecification",

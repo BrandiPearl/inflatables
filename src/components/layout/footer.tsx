@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
 import { useSettings } from "@/components/layout/settings-provider";
-import { mailHref, telHref } from "@/lib/utils";
+import { mailHref } from "@/lib/utils";
 
 const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
   {
@@ -78,7 +78,7 @@ export function Footer() {
               companies and large-scale events. Manufacturing since 2008.
             </p>
 
-            <div className="mt-7 space-y-3">
+            <div className="mt-7">
               <a
                 href={mailHref(settings.email)}
                 className="flex items-center gap-3 text-sm text-slate-400 transition-colors hover:text-white"
@@ -86,17 +86,6 @@ export function Footer() {
                 <Mail className="h-3.5 w-3.5 flex-shrink-0 text-orange-500" />
                 {settings.email}
               </a>
-              <a
-                href={telHref(settings.phone)}
-                className="spec flex items-center gap-3 text-sm text-slate-400 transition-colors hover:text-white"
-              >
-                <Phone className="h-3.5 w-3.5 flex-shrink-0 text-orange-500" />
-                {settings.phone}
-              </a>
-              <div className="flex items-start gap-3 text-sm text-slate-400">
-                <MapPin className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-orange-500" />
-                <span>{settings.address}</span>
-              </div>
             </div>
           </div>
 

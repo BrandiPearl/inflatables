@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { QuoteForm } from "./quote-form";
-import { Phone, Mail, Clock, CheckCircle2 } from "lucide-react";
+import { Mail, Clock, CheckCircle2 } from "lucide-react";
 import { getSiteSettings } from "@/lib/queries/settings";
-import { telHref } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Get a Free Quote",
@@ -58,18 +57,6 @@ export default async function QuotePage() {
                   <div>
                     <div className="font-semibold">{settings.email}</div>
                     <div className="text-xs text-slate-500">Reply within 2 hours</div>
-                  </div>
-                </a>
-                <a
-                  href={telHref(settings.phone)}
-                  className="flex items-center gap-3 text-sm text-slate-700 hover:text-orange-600 transition-colors"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 text-orange-600" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">{settings.phone}</div>
-                    <div className="text-xs text-slate-500">If email is not an option</div>
                   </div>
                 </a>
                 <div className="flex items-center gap-3 text-sm text-slate-700">

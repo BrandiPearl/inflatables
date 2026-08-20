@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { InfoPage, InfoSection } from "@/components/layout/info-page";
-import { BUSINESS_EMAIL, BUSINESS_PHONE_DISPLAY, mailHref } from "@/lib/contact-info";
+import { BUSINESS_EMAIL, mailHref } from "@/lib/contact-info";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -54,8 +54,11 @@ export default function PrivacyPage() {
 
       <InfoSection title="Contact">
         <p>
-          Wonderland Inflatables, 3200 Commerce Blvd, Ontario, CA 91761.
-          Phone {BUSINESS_PHONE_DISPLAY}.
+          Email us at{" "}
+          <a href={mailHref(BUSINESS_EMAIL)} className="text-orange-600 font-medium">
+            {BUSINESS_EMAIL}
+          </a>
+          .
         </p>
       </InfoSection>
     </InfoPage>

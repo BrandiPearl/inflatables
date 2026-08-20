@@ -138,7 +138,6 @@ export function QuoteForm() {
               type="tel"
               required
               className="input"
-              placeholder="(555) 000-0000"
               value={form.phone}
               onChange={handleChange}
             />
